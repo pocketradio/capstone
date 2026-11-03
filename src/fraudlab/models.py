@@ -121,7 +121,10 @@ def _prepare_xgb_frames(X_fit, frames, cat_columns):
     return transformed, state
 
 
-def _make_estimator(name: str, weight_strategy: str, positive_weight: float, categories: list[str], seed: int):
+def _make_estimator(
+    name: str, weight_strategy: str, positive_weight: float, categories: list[str], seed: int,
+    catboost_task_type: str = "CPU",
+):
     """Construct a CPU estimator for one model and class-weight candidate."""
     if name == "lightgbm":
         lgb = _require("lightgbm")
@@ -143,10 +146,17 @@ def _make_estimator(name: str, weight_strategy: str, positive_weight: float, cat
     if name == "catboost":
         cat = _require("catboost")
         return cat.CatBoostClassifier(
-            loss_function="Logloss", eval_metric="PRAUC:type=Classic", iterations=1600,
+            loss_function="Logloss",
+            # CatBoost's built-in PRAUC metric is CPU-only. Use GPU-supported
+            # AUC for GPU early stopping; candidate weights remain selected by
+            # externally calculated validation PR-AUC below.
+            eval_metric="AUC" if catboost_task_type == "GPU" else "PRAUC:type=Classic",
+            task_type=catboost_task_type,
+            devices="0" if catboost_task_type == "GPU" else None,
+            iterations=1600,
             learning_rate=0.04, depth=8, l2_leaf_reg=5.0,
             class_weights=[1.0, positive_weight], random_seed=seed,
-            thread_count=-1, verbose=False, allow_writing_files=False,
+            thread_count=-1, verbose=100, allow_writing_files=False,
         )
     raise ValueError(f"Unknown model name: {name}")
 
@@ -163,6 +173,7 @@ def fit_score_model(
     weight_strategies=WEIGHT_STRATEGIES,
     progress=None,
     progress_label: str = "",
+    catboost_task_type: str = "CPU",
 ) -> tuple[FittedScoreModel, pd.DataFrame]:
     """Select weighting on validation PR-AUC and fit a validation-only isotonic calibrator."""
     from sklearn.isotonic import IsotonicRegression
@@ -196,7 +207,10 @@ def fit_score_model(
         if progress is not None:
             progress.set_postfix_str(f"{progress_label} | weight={strategy}")
         weight = _weight_value(strategy, y_fit)
-        estimator = _make_estimator(name, strategy, weight, model_cat_columns, seed)
+        estimator = _make_estimator(
+            name, strategy, weight, model_cat_columns, seed,
+            catboost_task_type=catboost_task_type,
+        )
         if name == "lightgbm":
             estimator.fit(
                 fit_x, y_fit, categorical_feature=model_cat_columns,
@@ -211,7 +225,9 @@ def fit_score_model(
             estimator.fit(
                 fit_x, y_fit, cat_features=model_cat_columns,
                 eval_set=(val_x, y_validation), early_stopping_rounds=100,
-                verbose=False,
+                # Override the old silent fit setting so Kaggle logs show
+                # training progress during each long CPU fit.
+                verbose=100,
             )
         raw = np.asarray(estimator.predict_proba(val_x)[:, 1], dtype=np.float64)
         if progress is not None:

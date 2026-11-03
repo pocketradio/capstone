@@ -80,6 +80,11 @@ class ExperimentConfig:
     bandit: BanditConfig = BanditConfig()
     historical_phase1_cost: float = 720345.0
     random_seed: int = 42
+    catboost_task_type: str = "CPU"
+
+    def __post_init__(self):
+        if self.catboost_task_type not in {"CPU", "GPU"}:
+            raise ValueError("catboost_task_type must be 'CPU' or 'GPU'")
 
     def to_dict(self) -> dict:
         """Return a JSON-friendly nested dictionary."""

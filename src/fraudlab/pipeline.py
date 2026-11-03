@@ -32,6 +32,7 @@ def _fit_recipe(data, metadata, blocks, model_name, positions, config, output_di
         seed=config.random_seed,
         progress=progress,
         progress_label=f"{model_name}/{recipe_name}",
+        catboost_task_type=config.catboost_task_type,
     )
     val_prob = predict_calibrated(model, X.iloc[val_ix])
     sim_prob = predict_calibrated(model, X.iloc[sim_ix])
@@ -91,11 +92,15 @@ def train_recipe_model_from_artifacts(
     split_summary(data, positions).to_csv(out / "split_summary.csv", index=False)
     save_config(config, out / "experiment_config.json")
 
-    from tqdm.auto import tqdm
+    from tqdm import tqdm
 
     from .models import WEIGHT_STRATEGIES
 
-    with tqdm(total=len(WEIGHT_STRATEGIES), desc=f"{model_name}/{recipe}", unit="fit") as progress:
+    with tqdm(
+        total=len(WEIGHT_STRATEGIES), desc=f"{model_name}/{recipe}", unit="fit",
+        bar_format="{desc}: {percentage:3.0f}%|{bar}| {n_fmt}/{total_fmt} {postfix}",
+        mininterval=30, dynamic_ncols=False, leave=True,
+    ) as progress:
         result = _fit_recipe(
             data, metadata, list(blocks), model_name, positions, config, out,
             progress=progress, recipe_label=recipe,
@@ -136,7 +141,7 @@ def train_models_from_artifact(
     save_config(config, out / "experiment_config.json")
     results = {}
 
-    from tqdm.auto import tqdm
+    from tqdm import tqdm
 
     available_blocks = sum(bool(metadata["feature_blocks"].get(block)) for block in FEATURE_BLOCK_ORDER)
     recipe_count = (1 + available_blocks) if run_feature_ablation else len(model_names)
