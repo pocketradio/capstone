@@ -1,0 +1,10 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1100' height='480' viewBox='0 0 1100 480'><rect width='100%' height='100%' fill='white'/><text x='24' y='34' font-family='Arial' font-size='22' font-weight='bold'>Simulation-period PR-AUC (seed 42)</text><text x='700' y='34' font-family='Arial' font-size='13'>Previously examined period; descriptive</text>
+<text x='22' y='83' font-family='Arial' font-size='14'>lightgbm / r3_full_causal_identity</text><rect x='310' y='65' width='583' height='25' fill='#326a9a'/><text x='901' y='83' font-family='Arial' font-size='13'>0.484</text>
+<text x='22' y='125' font-family='Arial' font-size='14'>lightgbm / r1_uid</text><rect x='310' y='107' width='585' height='25' fill='#326a9a'/><text x='903' y='125' font-family='Arial' font-size='13'>0.485</text>
+<text x='22' y='167' font-family='Arial' font-size='14'>lightgbm / r0_control</text><rect x='310' y='149' width='585' height='25' fill='#326a9a'/><text x='903' y='167' font-family='Arial' font-size='13'>0.486</text>
+<text x='22' y='209' font-family='Arial' font-size='14'>xgboost / r0_control</text><rect x='310' y='191' width='594' height='25' fill='#326a9a'/><text x='912' y='209' font-family='Arial' font-size='13'>0.493</text>
+<text x='22' y='251' font-family='Arial' font-size='14'>xgboost / r1_uid</text><rect x='310' y='233' width='598' height='25' fill='#326a9a'/><text x='916' y='251' font-family='Arial' font-size='13'>0.496</text>
+<text x='22' y='293' font-family='Arial' font-size='14'>xgboost / r2_full_causal</text><rect x='310' y='275' width='599' height='25' fill='#326a9a'/><text x='917' y='293' font-family='Arial' font-size='13'>0.497</text>
+<text x='22' y='335' font-family='Arial' font-size='14'>xgboost / r3_full_causal_identity</text><rect x='310' y='317' width='605' height='25' fill='#326a9a'/><text x='923' y='335' font-family='Arial' font-size='13'>0.502</text>
+<text x='22' y='377' font-family='Arial' font-size='14'>catboost / r0_control</text><rect x='310' y='359' width='626' height='25' fill='#326a9a'/><text x='944' y='377' font-family='Arial' font-size='13'>0.520</text>
+</svg>

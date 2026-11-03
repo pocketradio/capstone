@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="430" viewBox="0 0 1100 430"><rect width="100%" height="100%" fill="white"/><text x="550" y="28" text-anchor="middle" font-family="Arial" font-size="20">Bandit feedback sensitivity — seed 42</text>
+<line x1='120' y1='350' x2='1050' y2='350' stroke='#ddd'/><text x='108' y='354' text-anchor='end' font-family='Arial' font-size='11'>0M</text>
+<line x1='120' y1='255' x2='1050' y2='255' stroke='#ddd'/><text x='108' y='259' text-anchor='end' font-family='Arial' font-size='11'>1M</text>
+<line x1='120' y1='160' x2='1050' y2='160' stroke='#ddd'/><text x='108' y='164' text-anchor='end' font-family='Arial' font-size='11'>2M</text>
+<line x1='120' y1='65' x2='1050' y2='65' stroke='#ddd'/><text x='108' y='69' text-anchor='end' font-family='Arial' font-size='11'>3M</text>
+<rect x='190' y='217.8502571535' width='26' height='132.1497428465' fill='#3976a8'><title>LightGBM R2: Immediate oracle = 1391050</title></rect>
+<rect x='224' y='76.615729116' width='26' height='273.384270884' fill='#d38a32'><title>LightGBM R2: Blocked hidden = 2877729</title></rect>
+<rect x='258' y='74.184279831' width='26' height='275.815720169' fill='#b44e4e'><title>LightGBM R2: Blocked +14d = 2903323</title></rect>
+<text x='235' y='374' text-anchor='middle' font-family='Arial' font-size='11'>LightGBM R2</text>
+<rect x='365' y='220.98542119' width='26' height='129.01457881' fill='#3976a8'><title>CatBoost R3 + Identity: Immediate oracle = 1358048</title></rect>
+<rect x='399' y='77.613826913' width='26' height='272.386173087' fill='#d38a32'><title>CatBoost R3 + Identity: Blocked hidden = 2867223</title></rect>
+<rect x='433' y='75.3594382005' width='26' height='274.6405617995' fill='#b44e4e'><title>CatBoost R3 + Identity: Blocked +14d = 2890953</title></rect>
+<text x='410' y='374' text-anchor='middle' font-family='Arial' font-size='11'>CatBoost R3 + Identity</text>
+<rect x='540' y='212.538496798' width='26' height='137.461503202' fill='#3976a8'><title>Isolation Forest R2: Immediate oracle = 1446963</title></rect>
+<rect x='574' y='76.2494756445' width='26' height='273.7505243555' fill='#d38a32'><title>Isolation Forest R2: Blocked hidden = 2881584</title></rect>
+<rect x='608' y='73.9319810445' width='26' height='276.0680189555' fill='#b44e4e'><title>Isolation Forest R2: Blocked +14d = 2905979</title></rect>
+<text x='585' y='374' text-anchor='middle' font-family='Arial' font-size='11'>Isolation Forest R2</text>
+<rect x='715' y='212.557896672' width='26' height='137.442103328' fill='#3976a8'><title>SGD OCSVM R2: Immediate oracle = 1446759</title></rect>
+<rect x='749' y='76.091986725' width='26' height='273.908013275' fill='#d38a32'><title>SGD OCSVM R2: Blocked hidden = 2883242</title></rect>
+<rect x='783' y='74.3783527945' width='26' height='275.6216472055' fill='#b44e4e'><title>SGD OCSVM R2: Blocked +14d = 2901280</title></rect>
+<text x='760' y='374' text-anchor='middle' font-family='Arial' font-size='11'>SGD OCSVM R2</text>
+<rect x='890' y='212.557896672' width='26' height='137.442103328' fill='#3976a8'><title>SGD OCSVM R3 + Identity: Immediate oracle = 1446759</title></rect>
+<rect x='924' y='76.090205475' width='26' height='273.909794525' fill='#d38a32'><title>SGD OCSVM R3 + Identity: Blocked hidden = 2883261</title></rect>
+<rect x='958' y='74.3792289795' width='26' height='275.6207710205' fill='#b44e4e'><title>SGD OCSVM R3 + Identity: Blocked +14d = 2901271</title></rect>
+<text x='935' y='374' text-anchor='middle' font-family='Arial' font-size='11'>SGD OCSVM R3 + Identity</text>
+<rect x='200' y='399' width='14' height='14' fill='#3976a8'/><text x='220' y='411' font-family='Arial' font-size='12'>Immediate oracle</text>
+<rect x='430' y='399' width='14' height='14' fill='#d38a32'/><text x='450' y='411' font-family='Arial' font-size='12'>Blocked hidden</text>
+<rect x='660' y='399' width='14' height='14' fill='#b44e4e'/><text x='680' y='411' font-family='Arial' font-size='12'>Blocked +14d</text>
+</svg>

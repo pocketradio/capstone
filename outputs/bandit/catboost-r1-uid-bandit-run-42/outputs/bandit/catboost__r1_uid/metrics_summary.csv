@@ -1,0 +1,5 @@
+model,recipe,branch,total_cost,total_cost,oracle_tax,oracle_tax,pr_auc,pr_auc,review_rate,review_rate,feedback_updates,feedback_updates
+,,,mean,std,mean,std,mean,std,mean,std,mean,std
+catboost,r1_uid,blocked_after_14d,2888490.034700001,,1545942.932500001,,0.516372160562116,,0.02983286483557422,,197843.0,
+catboost,r1_uid,blocked_hidden,2865390.5515,,1522843.4493,,0.516372160562116,,0.02983286483557422,,29565.0,
+catboost,r1_uid,immediate_feedback_oracle,1342547.1022,,0.0,,0.516372160562116,,0.02983286483557422,,236216.0,
